@@ -3,84 +3,26 @@ using System.Windows.Forms;
 
 namespace WelcomeFormApp
 {
-    public class Form1 : Form
+    public partial class Form1 : Form
     {
-        private Label labelPrompt;
-        private TextBox textBoxName;
-        private Button buttonGreet;
-        private Label labelMessage;
-
         public Form1()
         {
-            // Initialize the form and its controls
             InitializeComponent();
         }
 
-        private void InitializeComponent()
+        private void buttonGreet_Click(object sender, EventArgs e)
         {
-            // Create and configure the "Enter your name" label
-            this.labelPrompt = new Label();
-            this.labelPrompt.AutoSize = true;
-            this.labelPrompt.Location = new System.Drawing.Point(30, 30);
-            this.labelPrompt.Name = "labelPrompt";
-            this.labelPrompt.Size = new System.Drawing.Size(110, 20);
-            this.labelPrompt.Text = "Enter your name:";
-
-            // Create and configure the TextBox for the user's name
-            this.textBoxName = new TextBox();
-            this.textBoxName.Location = new System.Drawing.Point(150, 30);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(200, 26);
-
-            // Create and configure the "Greet Me" button
-            this.buttonGreet = new Button();
-            this.buttonGreet.Location = new System.Drawing.Point(150, 70);
-            this.buttonGreet.Name = "buttonGreet";
-            this.buttonGreet.Size = new System.Drawing.Size(100, 30);
-            this.buttonGreet.Text = "Greet Me";
-            this.buttonGreet.UseVisualStyleBackColor = true;
-            this.buttonGreet.Click += new EventHandler(this.ButtonGreet_Click);
-
-            // Create and configure the label for the greeting message
-            this.labelMessage = new Label();
-            this.labelMessage.AutoSize = true;
-            this.labelMessage.Location = new System.Drawing.Point(30, 120);
-            this.labelMessage.Name = "labelMessage";
-            this.labelMessage.Size = new System.Drawing.Size(0, 20);
-
-            // Configure the form
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 200);
-            this.Controls.Add(this.labelPrompt);
-            this.Controls.Add(this.textBoxName);
-            this.Controls.Add(this.buttonGreet);
-            this.Controls.Add(this.labelMessage);
-            this.Name = "Form1";
-            this.Text = "Welcome Form";
-        }
-
-        private void ButtonGreet_Click(object sender, EventArgs e)
-        {
-            // Check if the TextBox is not empty
+            // Check if the TextBox is not empty or whitespace
             if (!string.IsNullOrWhiteSpace(textBoxName.Text))
             {
-                // Display a personalized greeting
+                // Display a personalized greeting in the Label
                 labelMessage.Text = $"Hello, {textBoxName.Text}! Welcome!";
             }
             else
             {
-                // Ask the user to enter their name
+                // Ask the user to enter their name if the TextBox is empty
                 labelMessage.Text = "Please enter your name.";
             }
-        }
-
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
         }
     }
 }
